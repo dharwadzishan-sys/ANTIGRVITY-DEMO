@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoRide — AI Bus Ticket Booking</title>
+    <meta name="description"
+        content="Book bus tickets instantly with AI-powered recommendations. Find the best routes, select your seats, and travel smarter with GoRide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-bus"></i>
+                <span>Go<span class="accent">Ride</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#routes">Routes</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="loginBtn"><i class="fas fa-user"></i> Login</button>
+                <button class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-sparkles"></i> AI-Powered Booking
+            </div>
+            <h1>Travel Smarter,<br><span class="gradient-text">Book Faster</span></h1>
+            <p class="hero-subtitle">Experience the future of bus travel. AI finds the best routes, prices, and seats —
+                so you can just ride.</p>
+
+            <!-- Search Card -->
+            <div class="search-card" id="searchCard">
+                <div class="search-row">
+                    <div class="input-group">
+                        <label>From</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-location-dot"></i>
+                            <input type="text" id="fromCity" placeholder="From City" autocomplete="off"
+                                list="citiesList">
+                        </div>
+                    </div>
+                    <button class="swap-btn" id="swapBtn" title="Swap cities">
+                        <i class="fas fa-right-left"></i>
+                    </button>
+                    <div class="input-group">
+                        <label>To</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="toCity" placeholder="To City" autocomplete="off" list="citiesList">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Date</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-calendar-days"></i>
+                            <input type="date" id="travelDate">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Passengers</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-users"></i>
+                            <select id="passengers">
+                                <option value="1">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                                <option value="5">5 Passengers</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary search-btn" id="searchBtn">
+                    <i class="fas fa-magnifying-glass"></i> Search Buses
+                </button>
+            </div>
+            <datalist id="citiesList"></datalist>
+
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-num" data-target="500">0</span>+ <span
+                        class="stat-label">Routes</span></div>
+                <div class="stat"><span class="stat-num" data-target="50000">0</span>+ <span class="stat-label">Happy
+                        Travelers</span></div>
+                <div class="stat"><span class="stat-num" data-target="120">0</span>+ <span
+                        class="stat-label">Cities</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== POPULAR ROUTES ===================== -->
+    <section class="section" id="routes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-fire"></i> Trending</span>
+                <h2>Popular <span class="gradient-text">Routes</span></h2>
+                <p>Most booked routes by our travelers this month</p>
+            </div>
+            <div class="routes-grid" id="routesGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section section-dark" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-bolt"></i> Why GoRide</span>
+                <h2>Smart Features for <span class="gradient-text">Smart Travelers</span></h2>
+                <p>Powered by cutting-edge AI to make your journey seamless</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Recommendations</h3>
+                    <p>Our AI analyzes thousands of routes to find you the best time, price, and seat combo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt-lightning"></i></div>
+                    <h3>Instant Booking</h3>
+                    <p>Book your ticket in under 30 seconds. No queues, no hassle, just tap and go.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Secure Payments</h3>
+                    <p>All transactions are encrypted with bank-grade security for your peace of mind.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>24/7 AI Support</h3>
+                    <p>Chat with our AI assistant anytime for route info, cancellation help, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chair"></i></div>
+                    <h3>Live Seat Map</h3>
+                    <p>See real-time seat availability and pick your favorite spot on the bus.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-ticket"></i></div>
+                    <h3>E-Ticket</h3>
+                    <p>Get a digital boarding pass delivered instantly. No printouts needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT / CTA ===================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2>Ready to <span class="gradient-text">Ride?</span></h2>
+                    <p>Join 50,000+ travelers who book smarter with GoRide. Your next adventure is just one click away.
+                    </p>
+                    <a href="#home" class="btn btn-primary btn-lg"><i class="fas fa-bus"></i> Book Now</a>
+                </div>
+                <div class="cta-visual">
+                    <div class="cta-orb"></div>
+                    <i class="fas fa-bus-simple cta-bus-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo"><i class="fas fa-bus"></i> Go<span class="accent">Ride</span></a>
+                    <p>AI-powered bus booking for the modern traveler.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Press</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Safety</a>
+                    <a href="#">Cancellation</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Licenses</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GoRide. All rights reserved. Built with <i class="fas fa-heart"
+                        style="color:var(--accent)"></i> & AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== SEARCH RESULTS MODAL ===================== -->
+    <div class="modal-overlay" id="resultsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-bus"></i> Available Buses</h2>
+                <span class="route-info" id="routeInfo"></span>
+                <button class="modal-close" id="closeResults"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="resultsBody">
+                <!-- Bus cards go here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== SEAT SELECTION MODAL ===================== -->
+    <div class="modal-overlay" id="seatModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h2><i class="fas fa-chair"></i> Select Your Seats</h2>
+                <span class="bus-info" id="selectedBusInfo"></span>
+                <button class="modal-close" id="closeSeat"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body seat-modal-body">
+                <div class="seat-map-container">
+                    <div class="seat-legend">
+                        <span><span class="seat-box available"></span> Available</span>
+                        <span><span class="seat-box selected"></span> Selected</span>
+                        <span><span class="seat-box booked"></span> Booked</span>
+                    </div>
+                    <div class="bus-frame">
+                        <div class="bus-driver"><i class="fas fa-steering-wheel"></i> Driver</div>
+                        <div class="seat-grid" id="seatGrid">
+                            <!-- Seats generated by JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-summary">
+                    <h3>Booking Summary</h3>
+                    <div class="summary-detail">
+                        <span>Bus</span>
+                        <span id="summaryBus">—</span>
+                    </div>
+                    <div class="summary-detail">
+                        <span>Route</span>
+                        <span id="summaryRoute">—</span>
+                    </div>
+                    <div class="summary-detail">
+                        <span>Date</span>
+                        <span id="summaryDate">—</span>
+                    </div>
+                    <div class="summary-detail">
+                        <span>Seats</span>
+                        <span id="summarySeats">—</span>
+                    </div>
+                    <div class="summary-detail">
+                        <span>Passengers</span>
+                        <span id="summaryPassengers">—</span>
+                    </div>
+                    <hr>
+                    <div class="summary-detail total">
+                        <span>Total Fare</span>
+                        <span id="summaryTotal">₹0</span>
+                    </div>
+
+                    <!-- Passenger Info -->
+                    <div class="passenger-info" id="passengerInfo">
+                        <h4>Passenger Details</h4>
+                        <div class="input-group-sm">
+                            <input type="text" id="paxName" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-group-sm">
+                            <input type="email" id="paxEmail" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-group-sm">
+                            <input type="tel" id="paxPhone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" id="bookNowBtn" disabled>
+                        <i class="fas fa-credit-card"></i> Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== BOOKING CONFIRMATION MODAL ===================== -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal modal-ticket">
+            <div class="ticket-card" id="ticketCard">
+                <div class="ticket-header">
+                    <div class="ticket-logo">
+                        <i class="fas fa-bus"></i> Go<span class="accent">Ride</span>
+                    </div>
+                    <div class="ticket-status">
+                        <i class="fas fa-circle-check"></i> Confirmed
+                    </div>
+                </div>
+                <div class="ticket-hero-text">
+                    <i class="fas fa-circle-check ticket-big-check"></i>
+                    <h2>Your Ticket is Booked!</h2>
+                    <p class="ticket-id" id="ticketId">Ticket: #GORIDE-000000</p>
+                </div>
+                <div class="ticket-body">
+                    <div class="ticket-route-visual">
+                        <div class="ticket-city">
+                            <span class="city-name" id="tktFrom">—</span>
+                            <span class="city-time" id="tktDep">—</span>
+                        </div>
+                        <div class="ticket-route-line">
+                            <span class="dot"></span>
+                            <span class="line"></span>
+                            <i class="fas fa-bus-simple route-bus-icon"></i>
+                            <span class="line"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="ticket-city">
+                            <span class="city-name" id="tktTo">—</span>
+                            <span class="city-time" id="tktArr">—</span>
+                        </div>
+                    </div>
+                    <div class="ticket-details-grid">
+                        <div class="ticket-detail">
+                            <span class="label">Passenger</span>
+                            <span class="value" id="tktName">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Date</span>
+                            <span class="value" id="tktDate">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Bus</span>
+                            <span class="value" id="tktBus">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Seat(s)</span>
+                            <span class="value" id="tktSeats">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Duration</span>
+                            <span class="value" id="tktDuration">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Bus Type</span>
+                            <span class="value" id="tktType">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Email</span>
+                            <span class="value" id="tktEmail">—</span>
+                        </div>
+                        <div class="ticket-detail">
+                            <span class="label">Phone</span>
+                            <span class="value" id="tktPhone">—</span>
+                        </div>
+                    </div>
+                    <div class="ticket-total">
+                        <span>Total Paid</span>
+                        <span id="tktTotal">₹0</span>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <button class="btn btn-outline" id="printTicketBtn"><i class="fas fa-print"></i> Print
+                        Ticket</button>
+                    <button class="btn btn-primary" id="closeConfirm"><i class="fas fa-check"></i> Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== AI CHATBOT ===================== -->
+    <button class="chatbot-toggle" id="chatToggle" title="Chat with AI Assistant">
+        <i class="fas fa-robot"></i>
+        <span class="chat-pulse"></span>
+    </button>
+    <div class="chatbot-panel" id="chatPanel">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+                <div>
+                    <h4>GoRide AI</h4>
+                    <span class="chat-status"><span class="status-dot"></span> Online</span>
+                </div>
+            </div>
+            <button class="chat-close" id="chatClose"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages go here -->
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+            <button class="suggestion-chip" data-q="What routes are available?">🗺️ Routes</button>
+            <button class="suggestion-chip" data-q="How do I book a ticket?">🎫 How to book</button>
+            <button class="suggestion-chip" data-q="Can I cancel my booking?">❌ Cancellation</button>
+            <button class="suggestion-chip" data-q="What are the prices?">💰 Prices</button>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask me anything…" autocomplete="off">
+            <button class="chat-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- ===================== LOADING OVERLAY ===================== -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader">
+            <div class="loader-bus"><i class="fas fa-bus-simple"></i></div>
+            <div class="loader-road"></div>
+            <p>Finding the best buses for you…</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
